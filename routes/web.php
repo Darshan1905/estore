@@ -14,8 +14,12 @@ use App\Http\Controllers\show;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
  
-Route::get('home',[show::class,'display']);
+Route::get('/',[show::class,'display']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

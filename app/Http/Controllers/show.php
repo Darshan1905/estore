@@ -15,7 +15,7 @@ class show extends Controller
         // return view('demofetch');
         $kd = pro::all();
 
-        return view ('demofetch',['data'=>$kd]);
+        return view ('index',['data'=>$kd]);
 
     }
 }
