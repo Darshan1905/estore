@@ -1,40 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-
-    <title>Estore</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- google font -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital@1&display=swap" rel="stylesheet">
-</head>
-
-<body>
-
-    <!-- Header -->
-
-    <x-header />
-
-    <!--/ Header -->
-
-    <!-- Banner -->
-
-    <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="carousel">
+@section('content')
+<div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                 aria-current="true" aria-label="Slide 1"></button>
@@ -135,16 +102,23 @@
                         @foreach($data as $kirit)
 
                         <div class="col-lg-3 col-md-4 col-sm-6">
+                            <a href="detail/{{$kirit['id']}}">
                             <div class="card mt-5">
                                 <img src="{{Storage::url($kirit->image)}}" alt="" style="width:100%">
-                                <li><b>Name:-</b> {{$kirit['name']}}</li>
+                                <li><b>Name:-</b> {{$kirit['name']}}</li>       
                                 <li><b>Company:-</b> {{$kirit['artist']}}</li>
                                 <li><b>Price:-</b> {{$kirit['price']}}</li>
                                 <li>
-                                    <div class="add-btn">Add to cart</div>
+                                <form action="/add_to_cart" method="POST">
+                            <input type="hidden" name="product_id" value="{{$kirit['id']}}">
+                            @csrf
+                        <button class="add-btn">Add to cart</button>
+                        </form>
+                                
                                 </li>
 
                             </div>
+                            </a>
                         </div>
                         @endforeach
 
@@ -185,7 +159,7 @@
                                 <li><b>Company:-</b> {{$kirit['artist']}}</li>
                                 <li><b>Price:-</b> {{$kirit['price']}}</li>
                                 <li>
-                                    <div class="add-btn">Add to cart</div>
+                                   <div class="">Add to cart</div>
                                 </li>
 
                             </div>
@@ -235,24 +209,6 @@
 
 
 
-    <!-- Footer -->
-
-    <x-footer />
-    <!-- Footer -->
 
 
-
-    <!-- All Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-</body>
-
-</html>
+@endsection

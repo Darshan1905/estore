@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\show;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +20,17 @@ use App\Http\Controllers\show;
 //     return view('welcome');
 // });
  
-Route::get('/',[show::class,'display']);
 
 Auth::routes();
+// Route::get('/',[show::class,'display']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/detail/{id}', [Show::class, 'detail']);
+Route::post('/add_to_cart', [Show::class, 'addtocart']);
+Route::get('/cart', [Show::class, 'cartList']);
+Route::get('/removeitem/{id}', [Show::class, 'removeItem']);
+Route::get('/ordernow', [Show::class, 'orderNow']);
+
+

@@ -27,7 +27,7 @@
     <div class="row pt-5">
         <hr class="text-white">
         <div class="col-lg-12 text-center pt-2">
-            <h4 class="text-white">Copyright @ estore.com Developed by Darshan & Kirit</h4>
+            <h4 class="text-white">Copyright @ estore.com Developed by Darshan, Kirit & Viren </h4>
         </div>
     </div>
 </div>

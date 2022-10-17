@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\pro;
+
 
 use Illuminate\Http\Request;
 
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $kd = pro::all();
+        return view ('index',['data'=>$kd]);
+        // return view('home');
     }
+
 }
