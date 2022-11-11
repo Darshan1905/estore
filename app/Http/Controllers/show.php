@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\pro;
 use App\Models\Cart;
+use App\Models\Order;
 
 
 class show extends Controller
@@ -25,11 +26,16 @@ class show extends Controller
     }
 
     function addtocart(Request $req){
-        $cart = new Cart;
-        // $cart -> users_id = $req->session()->get('users')['id'];
-        $cart -> product_id = $req->product_id;
-        $cart->save();
-        return back()->with('success','Product added to cart');
+
+        
+            $cart = new Cart;
+            // $cart -> users_id = $req->session()->get('users')['id'];
+            $cart -> product_id = $req->product_id;
+            $cart->save();
+            return back()->with('success','Product added to cart');
+           
+
+       
     }
 
     function cartList()
@@ -58,5 +64,36 @@ class show extends Controller
 
         return view ('ordernow',['total'=>$Total]);
 
+    }
+
+    
+    function placeOrder(Request $req)
+    {
+        $cart = Cart::all();
+        foreach($cart as $crt){
+            $order = new Order;
+            $order->product_id = $crt['product_id'];
+            $order->address = $req->address;
+            $order->status = "Pending";
+            $order->payment_method = $req->payment;
+            $order->payment_status = "Pending";
+            $order->save();
+        }
+
+        Cart::destroy($cart);
+        return redirect('/');
+       
+    }
+
+    function myOrder()
+    {
+        // $productId = pro::all();
+        $orders = DB::table('orders')
+        ->join('pros','orders.product_id','pros.id')
+        // ->where('orders.product_id',$productId)
+        ->get();
+
+
+        return view ('myorder',['orders'=>$orders]);
     }
 }

@@ -108,12 +108,19 @@
 
     <div class="container">
 
-        <h2 class="text-center mt-5 mb-5">Cart</h2>
+        <h2 class="text-center mt-5 mb-5">Order Detail</h2>
         <div class="table-responsive">
             <table class="table border-dark">
-
+                <thead>
+                    <td>Product</td>
+                    <td>Product Name</td>
+                    <td>Price</td>
+                    <td>Status</td>
+                    <td>Payment Method</td>
+                    <td>Address</td>
+                </thead>
                 <tbody>
-                    @foreach($cartdata as $kirit)
+                    @foreach($orders as $kirit)
 
                     <tr style="border-top-width: 1px;">
                         <td><img src="{{Storage::url($kirit->image)}}" alt="" style="width:150px">
@@ -121,10 +128,13 @@
                         <td>{{$kirit->name}}<br>
                             {{$kirit->artist}}
                         </td>
-                        <td>Quantity: 1</td>
+                        <!-- <td>Quantity: 1</td> -->
 
                         <td>Rs. {{$kirit->price}}</td>
-                        <td><a href="/removeitem/{{$kirit->cart_id}}" class="btn btn-danger">Delete</a></td>
+                        <td>{{$kirit->status}}</td>
+                        <td>{{$kirit->payment_method}}</td>
+                        <td>{{$kirit->address}}</td>
+
 
                     </tr>
                     @endforeach
@@ -133,7 +143,7 @@
             </table>
         </div>
 
-        <a class="btn btn-success" href="/ordernow">Order Now</a>
+        <!-- <a class="btn btn-success" href="/ordernow">Order Now</a> -->
         <br><br>
         <a class="btn btn-primary" href="/">Continue Shopping</a>
 

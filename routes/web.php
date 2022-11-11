@@ -32,5 +32,6 @@ Route::post('/add_to_cart', [Show::class, 'addtocart']);
 Route::get('/cart', [Show::class, 'cartList']);
 Route::get('/removeitem/{id}', [Show::class, 'removeItem']);
 Route::get('/ordernow', [Show::class, 'orderNow']);
-
-
+Route::post('/placeorder', [Show::class,'placeOrder']);
+Route::get('/myorder', [Show::class,'myOrder']);
+// Route::post('/orderplace', [Show::class, 'orderPlace']);
